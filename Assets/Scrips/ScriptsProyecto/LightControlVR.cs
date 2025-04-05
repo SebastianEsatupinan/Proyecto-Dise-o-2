@@ -15,6 +15,11 @@ public class LightControlVR : MonoBehaviour
 
     private float targetYRotation;
     private float smoothSpeed = 3f;
+    [Header("Rotación con pivote externo")]
+    public Transform pivote; // pivote alrededor del cual rotará la luz
+    public float distanciaAlPivote = 2f; // distancia desde el pivote
+
+
 
     void Start()
     {
@@ -63,11 +68,22 @@ public class LightControlVR : MonoBehaviour
 
     void Update()
     {
-        // Aplicar suavemente la rotación Y
-        Vector3 currentRotation = transform.eulerAngles;
-        float newY = Mathf.LerpAngle(currentRotation.y, targetYRotation, Time.deltaTime * smoothSpeed);
-        transform.eulerAngles = new Vector3(currentRotation.x, newY, currentRotation.z);
+        if (pivote == null)
+            return;
+
+        // Calcular rotación suavizada en Y
+        float currentY = transform.eulerAngles.y;
+        float newY = Mathf.LerpAngle(currentY, targetYRotation, Time.deltaTime * smoothSpeed);
+
+        // Calcular la nueva posición alrededor del pivote
+        Quaternion rot = Quaternion.Euler(0f, newY, 0f);
+        Vector3 offset = rot * Vector3.forward * distanciaAlPivote;
+        transform.position = pivote.position + offset;
+
+        // Hacer que siempre mire hacia el pivote
+        transform.LookAt(pivote.position);
     }
+
 
     /// <summary>
     /// Muestra el panel de UI.
