@@ -11,22 +11,14 @@ public class LightControlVR : MonoBehaviour
     public Slider sliderIntensidad;
     public Slider sliderColorTemp;
     public Slider sliderRotacionY;
-    public Slider sliderAngulo;  // Nuevo slider para ángulo de luz
+    public Slider sliderAngulo;
 
     private float targetYRotation;
-    private float smoothSpeed = 3f;
-    [Header("Rotación con pivote externo")]
-    public Transform pivote; // pivote alrededor del cual rotará la luz
-    public float distanciaAlPivote = 2f; // distancia desde el pivote
-
-
 
     void Start()
     {
-        // Mostramos el panel al iniciar (puedes comentar esto si prefieres iniciar oculto)
         ShowCanvas();
 
-        // Configurar Slider de Intensidad
         if (sliderIntensidad != null && luzSpot != null)
         {
             sliderIntensidad.minValue = 0;
@@ -35,7 +27,6 @@ public class LightControlVR : MonoBehaviour
             sliderIntensidad.onValueChanged.AddListener(SetIntensity);
         }
 
-        // Configurar Slider de Temperatura
         if (sliderColorTemp != null)
         {
             sliderColorTemp.minValue = 1000;
@@ -44,7 +35,6 @@ public class LightControlVR : MonoBehaviour
             sliderColorTemp.onValueChanged.AddListener(SetColorTemperature);
         }
 
-        // Configurar Slider de Rotación
         if (sliderRotacionY != null)
         {
             sliderRotacionY.minValue = 0;
@@ -53,7 +43,6 @@ public class LightControlVR : MonoBehaviour
             sliderRotacionY.onValueChanged.AddListener(SetRotationY);
         }
 
-        // Configurar Slider de Ángulo
         if (sliderAngulo != null && luzSpot != null)
         {
             sliderAngulo.minValue = 10;
@@ -62,32 +51,9 @@ public class LightControlVR : MonoBehaviour
             sliderAngulo.onValueChanged.AddListener(SetSpotAngle);
         }
 
-        // Guardamos rotación inicial
         targetYRotation = transform.eulerAngles.y;
     }
 
-    void Update()
-    {
-        if (pivote == null)
-            return;
-
-        // Calcular rotación suavizada en Y
-        float currentY = transform.eulerAngles.y;
-        float newY = Mathf.LerpAngle(currentY, targetYRotation, Time.deltaTime * smoothSpeed);
-
-        // Calcular la nueva posición alrededor del pivote
-        Quaternion rot = Quaternion.Euler(0f, newY, 0f);
-        Vector3 offset = rot * Vector3.forward * distanciaAlPivote;
-        transform.position = pivote.position + offset;
-
-        // Hacer que siempre mire hacia el pivote
-        transform.LookAt(pivote.position);
-    }
-
-
-    /// <summary>
-    /// Muestra el panel de UI.
-    /// </summary>
     public void ShowCanvas()
     {
         if (panelUI != null)
@@ -97,9 +63,6 @@ public class LightControlVR : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Oculta el panel de UI.
-    /// </summary>
     public void HideCanvas()
     {
         if (panelUI != null)
@@ -123,7 +86,9 @@ public class LightControlVR : MonoBehaviour
 
     private void SetRotationY(float value)
     {
-        targetYRotation = value;
+        Vector3 rot = transform.eulerAngles;
+        rot.y = value;
+        transform.eulerAngles = rot;
     }
 
     private void SetSpotAngle(float value)
@@ -132,9 +97,6 @@ public class LightControlVR : MonoBehaviour
             luzSpot.spotAngle = value;
     }
 
-    /// <summary>
-    /// Convierte un valor Kelvin en un color RGB aproximado.
-    /// </summary>
     private Color KelvinToRGB(float kelvin)
     {
         float temp = kelvin / 100f;
