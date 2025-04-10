@@ -3,6 +3,12 @@ using UnityEngine.UI;
 
 public class LightControlVR : MonoBehaviour
 {
+
+    private float intensidadActual;
+    private float temperaturaActual;
+    private float rotacionYActual;
+    private float anguloActual;
+
     [Header("Referencias")]
     public Light luzSpot;
     public GameObject panelUI;
@@ -74,18 +80,21 @@ public class LightControlVR : MonoBehaviour
 
     private void SetIntensity(float value)
     {
+        intensidadActual = value;
         if (luzSpot != null)
             luzSpot.intensity = value;
     }
 
     private void SetColorTemperature(float kelvin)
     {
+        temperaturaActual = kelvin;
         if (luzSpot != null)
             luzSpot.color = KelvinToRGB(kelvin);
     }
 
     private void SetRotationY(float value)
     {
+        rotacionYActual = value;
         Vector3 rot = transform.eulerAngles;
         rot.y = value;
         transform.eulerAngles = rot;
@@ -93,6 +102,7 @@ public class LightControlVR : MonoBehaviour
 
     private void SetSpotAngle(float value)
     {
+        anguloActual = value;
         if (luzSpot != null)
             luzSpot.spotAngle = value;
     }
@@ -116,5 +126,17 @@ public class LightControlVR : MonoBehaviour
         }
 
         return new Color(r / 255f, g / 255f, b / 255f);
+    }
+
+    public DatosLuzExtra ObtenerDatos()
+    {
+        return new DatosLuzExtra
+        {
+            intensidad = intensidadActual,
+            temperatura = temperaturaActual,
+            rotacionY = rotacionYActual,
+            angulo = anguloActual,
+            tipoPreset = "N/A" // esto para cuando vayamos a diferencias las luces
+        };
     }
 }
