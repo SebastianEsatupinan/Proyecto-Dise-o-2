@@ -49,4 +49,5 @@ public class SuperposicionEsquemasUI : MonoBehaviour
         if (imagenA_Lateral != null) imagenA_Lateral.texture = texA;
         if (imagenB_Lateral != null) imagenB_Lateral.texture = texB;
     }
+
 }
