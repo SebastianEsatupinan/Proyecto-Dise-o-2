@@ -17,32 +17,38 @@ public class CapturadorEsquemas : MonoBehaviour
             return;
         }
 
-        // Creamos un RenderTexture temporal que no interfiere con la cámara en escena
+        // Guardar estado original
+        bool estabaActiva = camaraCenital.enabled;
         RenderTexture rtOriginal = camaraCenital.targetTexture;
 
+        // Crear RenderTexture temporal
         RenderTexture rtTemporal = new RenderTexture(resolucion, resolucion, 24);
         camaraCenital.targetTexture = rtTemporal;
 
-        // Forzamos render sin cambiar cámara activa
+        // Activar la cámara solo para renderizar (sin cambiar cámara activa del XR)
+        camaraCenital.enabled = true;
         camaraCenital.Render();
 
+        // Capturar la imagen
         RenderTexture.active = rtTemporal;
         Texture2D imagen = new Texture2D(resolucion, resolucion, TextureFormat.RGB24, false);
         imagen.ReadPixels(new Rect(0, 0, resolucion, resolucion), 0, 0);
         imagen.Apply();
 
-        // Restauramos todo
+        // Restaurar todo
         camaraCenital.targetTexture = rtOriginal;
+        camaraCenital.enabled = estabaActiva;
         RenderTexture.active = null;
         rtTemporal.Release();
         Destroy(rtTemporal);
 
-        byte[] bytes = imagen.EncodeToPNG();
+        // Guardar en disco (ajusta ruta si usas Descargas)
         string ruta = Path.Combine(Application.persistentDataPath, nombreArchivo);
-        File.WriteAllBytes(ruta, bytes);
+        File.WriteAllBytes(ruta, imagen.EncodeToPNG());
 
-        Debug.Log($"📷 Esquema capturado sin cambiar cámara. Guardado en: {ruta}");
+        Debug.Log($"📷 Esquema capturado sin interferir. Guardado en: {ruta}");
     }
+
 
     public Texture2D CargarEsquema(string nombreArchivo)
     {
