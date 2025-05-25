@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 7289514577628290960}
   - component: {fileID: 8779434619084875072}
   - component: {fileID: 7973031462885116868}
+  - component: {fileID: 908978249284286875}
   m_Layer: 0
   m_Name: Luz directa v1
   m_TagString: InteractuablesGuardables
@@ -234,15 +235,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517163948396987085}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.12602727, z: -0, w: 0.99202675}
+  m_LocalPosition: {x: -11.948, y: -3.932, z: -2.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1281054108360299407}
   - {fileID: 4477220444907440217}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 14.48, z: 0}
 --- !u!114 &6031516715483242990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 0}
+  - {fileID: 908978249284286875}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -455,6 +456,29 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!136 &908978249284286875
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517163948396987085}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.09674652
+  m_Height: 2.2563086
+  m_Direction: 1
+  m_Center: {x: 0.005386874, y: 0.58523536, z: -0.0085568195}
 --- !u!1 &544209549808762320
 GameObject:
   m_ObjectHideFlags: 0
