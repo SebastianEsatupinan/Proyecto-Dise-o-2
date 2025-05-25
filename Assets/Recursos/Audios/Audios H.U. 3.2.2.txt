@@ -1,0 +1,60 @@
+- Intensidad:
+"La intensidad actual es baja. Intenta aumentarla para definir mejor los contornos."
+
+"Recuerda: una luz tenue puede generar atmósferas íntimas, pero podría no ser suficiente para resaltar detalles."
+
+"Una intensidad alta puede sobreexponer la escena. Prueba bajarla un poco si los objetos se ven demasiado iluminados."
+
+"Buena elección de intensidad. El equilibrio entre luz y sombra se mantiene natural."
+
+"¿Quieres mayor dramatismo? Aumenta la intensidad y combina con un ángulo cerrado."
+
+"Cuidado con intensidades muy altas en rostros. Podrían generar sombras no deseadas."
+
+
+
+- Temperatura de color:
+
+"Estás usando una luz muy cálida. Ideal para representar atardeceres o ambientes acogedores."
+
+"La luz blanca neutra es perfecta para una iluminación equilibrada. Excelente decisión."
+
+"Has elegido una temperatura fría. Esta opción transmite tecnología, distancia o tensión."
+
+"¿Quieres una escena emocionalmente cálida? Baja la temperatura para lograr un tono más humano."
+
+"Para escenas quirúrgicas o clínicas, considera mantener la temperatura por encima de 7000 Kelvin."
+
+"La temperatura de color impacta emocionalmente. Una pequeña variación cambia el mensaje visual."
+
+
+
+- Rotación Y (Dirección de la luz):
+
+"La luz está casi frontal. Esto puede aplanar los volúmenes del rostro."
+
+"Intenta una rotación lateral de 45 grados para generar sombras suaves y profundidad."
+
+"Buena elección. El ángulo diagonal añade dramatismo sin ocultar el sujeto."
+
+"Si la luz está detrás, puedes crear un halo o recorte. Útil para separar al sujeto del fondo."
+
+"Una rotación lateral resalta la textura. Ideal para retratos o productos."
+
+"Evita siempre colocar la luz justo arriba o enfrente, a menos que busques un efecto teatral."
+
+
+
+- Ángulo del haz (Spot Angle):
+
+"Un ángulo estrecho genera un foco dramático. Muy útil para destacar un solo elemento."
+
+"Ángulos medios dan flexibilidad. Equilibran dramatismo y cobertura."
+
+"Un ángulo amplio ilumina grandes áreas, pero reduce la definición de sombras."
+
+"¿Quieres centrar la atención en un objeto? Reduce el ángulo para concentrar la luz."
+
+"Ángulos abiertos funcionan bien para iluminación ambiental o de fondo."
+
+"Ángulos cerrados son ideales para teatralidad y control de la dirección."
