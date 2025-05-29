@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExportadorDeEscena : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class ExportadorDeEscena : MonoBehaviour
 
     private string carpetaDescargas => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
     private string carpetaTemporal => Path.Combine(Application.temporaryCachePath, "ExportacionIluminacion");
+
+    public string nombreEscenaFinal;
 
     public void ExportarSimulacion()
     {
@@ -29,6 +32,15 @@ public class ExportadorDeEscena : MonoBehaviour
 
         Debug.Log($"📦 Exportación completada. ZIP guardado en:\n{rutaZIP}");
         Application.OpenURL("file://" + carpetaDescargas); // Abrir carpeta al finalizar
+
+        //Para que no se quede pegado al volver a la escena principal
+        GameObject simulador = GameObject.FindObjectOfType<UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation.XRDeviceSimulator>()?.gameObject;
+        if (simulador != null)
+        {
+            Destroy(simulador);
+        }
+
+        SceneManager.LoadScene(nombreEscenaFinal);
     }
 
     void CapturarImagen(string ruta)
