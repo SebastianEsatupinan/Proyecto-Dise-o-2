@@ -27,45 +27,55 @@ public class LightControlVR : MonoBehaviour
     public AudioClip[] audiosIntensidad;
     /*
         [0] Intensidad baja
-        [1] Intensidad tenue (atmosférica)
+        [1] Intensidad tenue (atmosfï¿½rica)
         [2] Intensidad alta
         [3] Intensidad equilibrada
-        [4] Intensidad dramática
+        [4] Intensidad dramï¿½tica
         [5] Intensidad en rostro (demasiado alta)
     */
 
     [Header("Audios de Temperatura")]
     public AudioClip[] audiosTemperatura;
     /*
-        [0] Muy cálida
+        [0] Muy cï¿½lida
         [1] Neutra
-        [2] Fría
-        [3] Emocional cálida
-        [4] Técnica clínica
+        [2] Frï¿½a
+        [3] Emocional cï¿½lida
+        [4] Tï¿½cnica clï¿½nica
         [5] Impacto emocional
     */
 
-    [Header("Audios de Rotación")]
+    [Header("Audios de Rotaciï¿½n")]
     public AudioClip[] audiosRotacion;
     /*
         [0] Frontal
-        [1] Lateral 45°
+        [1] Lateral 45ï¿½
         [2] Diagonal ideal
         [3] Trasera tipo halo
         [4] Lateral para textura
-        [5] Mala colocación (superior/frontal fuerte)
+        [5] Mala colocaciï¿½n (superior/frontal fuerte)
     */
 
-    [Header("Audios de Ángulo")]
+    [Header("Audios de ï¿½ngulo")]
     public AudioClip[] audiosAngulo;
     /*
-        [0] Ángulo cerrado
-        [1] Ángulo medio
-        [2] Ángulo abierto
+        [0] ï¿½ngulo cerrado
+        [1] ï¿½ngulo medio
+        [2] ï¿½ngulo abierto
         [3] Para enfoque
         [4] Ambiental
         [5] Teatral
     */
+
+
+    [Header("Iconos de Intensidad")]
+    public GameObject iconoIntensidadBaja;
+    public GameObject iconoIntensidadMedia;
+    public GameObject iconoIntensidadAlta;
+
+    [Header("Iconos de Temperatura")]
+    public GameObject iconoTempCalida;
+    public GameObject iconoTempFria;
 
     private float targetYRotation;
 
@@ -190,36 +200,79 @@ public class LightControlVR : MonoBehaviour
     {
         if (audioSource == null) return;
 
+        // Oculta todos los Ã­conos
+        iconoIntensidadBaja.SetActive(false);
+        iconoIntensidadMedia.SetActive(false);
+        iconoIntensidadAlta.SetActive(false);
+        iconoTempCalida.SetActive(false);
+        iconoTempFria.SetActive(false);
+
+
         switch (ultimoSliderModificado)
         {
             case "intensidad":
                 if (intensidadActual < 1f)
+                {
+                    iconoIntensidadBaja.SetActive(true);
                     audioSource.PlayOneShot(audiosIntensidad[0]);
+                }
                 else if (intensidadActual < 3f)
+                {
+                    iconoIntensidadBaja.SetActive(true);
                     audioSource.PlayOneShot(audiosIntensidad[1]);
+                }
                 else if (intensidadActual > 15f)
+                {
+                    iconoIntensidadAlta.SetActive(true);
                     audioSource.PlayOneShot(audiosIntensidad[2]);
+                }
                 else if (intensidadActual >= 6f && intensidadActual <= 10f)
+                {
+                    iconoIntensidadMedia.SetActive(true);
                     audioSource.PlayOneShot(audiosIntensidad[3]);
+                }
                 else if (intensidadActual > 10f)
+                {
+                    iconoIntensidadMedia.SetActive(true);
                     audioSource.PlayOneShot(audiosIntensidad[4]);
+                }
                 else
+                {
+                    iconoIntensidadMedia.SetActive(true);
                     audioSource.PlayOneShot(audiosIntensidad[5]);
+                }
                 break;
 
             case "temperatura":
                 if (temperaturaActual < 3000f)
+                {
+                    iconoTempCalida.SetActive(true);
                     audioSource.PlayOneShot(audiosTemperatura[0]);
+                }
                 else if (temperaturaActual >= 3000f && temperaturaActual <= 5000f)
+                {
+                    iconoTempCalida.SetActive(true);
                     audioSource.PlayOneShot(audiosTemperatura[1]);
+                }
                 else if (temperaturaActual > 7000f)
+                {
+                    iconoTempFria.SetActive(true);
                     audioSource.PlayOneShot(audiosTemperatura[2]);
+                }
                 else if (temperaturaActual < 4500f)
+                {
+                    iconoTempCalida.SetActive(true);
                     audioSource.PlayOneShot(audiosTemperatura[3]);
+                }
                 else if (temperaturaActual > 8500f)
+                {
+                    iconoTempFria.SetActive(true);
                     audioSource.PlayOneShot(audiosTemperatura[4]);
+                }
                 else
+                {
                     audioSource.PlayOneShot(audiosTemperatura[5]);
+                }
                 break;
 
             case "rotacion":

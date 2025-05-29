@@ -6,7 +6,6 @@ public class ControladorModulosVisuales : MonoBehaviour
 {
     public List<GameObject> modulos;
     private int indiceActual = 0;
-    public GameObject mensajeFinal;
 
     void Start()
     {
@@ -21,16 +20,6 @@ public class ControladorModulosVisuales : MonoBehaviour
         indiceActual = (indiceActual + 1) % modulos.Count;
 
         modulos[indiceActual].SetActive(true);
-
-        // Mostrar mensaje final solo si estamos en el último módulo (antes de reiniciar)
-        if (indiceActual == 0 && mensajeFinal != null)
-        {
-            mensajeFinal.SetActive(true); // 🔥 Muestra el mensaje al terminar ciclo completo
-        }
-        else if (mensajeFinal != null)
-        {
-            mensajeFinal.SetActive(false); // Oculta si está viendo cualquier otro módulo
-        }
     }
 
     private void ActivarModulo(int index)
