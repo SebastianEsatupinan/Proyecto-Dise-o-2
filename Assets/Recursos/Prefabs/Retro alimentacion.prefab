@@ -990,7 +990,7 @@ PrefabInstance:
     - target: {fileID: 7973031462885116868, guid: afd33179a8cac3947bd110e930c4256b, type: 3}
       propertyPath: m_Colliders.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8795699610325257637}
     m_RemovedComponents:
     - {fileID: 908978249284286875, guid: afd33179a8cac3947bd110e930c4256b, type: 3}
     m_RemovedGameObjects: []
